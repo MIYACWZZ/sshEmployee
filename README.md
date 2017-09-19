@@ -2,7 +2,7 @@
 
 ###spring4 + struts2 + Hibernate5
 
-	<!-- struts版本号 -->
+        <!-- struts版本号 -->
         <struts.version>2.5.8</struts.version>
 
         <!-- spring版本号 -->
