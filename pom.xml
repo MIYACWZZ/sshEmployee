@@ -45,9 +45,6 @@
         <!-- c3p0版本号 -->
         <c3p0.version>0.9.5.2</c3p0.version>
 
-        <!--  &lt;!&ndash; log4j日志包版本号 &ndash;&gt;
-          <slf4j.version>1.7.25</slf4j.version>
-          <log4j.version>1.2.17</log4j.version>-->
 
     </properties>
 
