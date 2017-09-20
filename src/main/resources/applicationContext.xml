@@ -24,7 +24,28 @@
         <!-- 配置Hibernate的属性 -->
         <property name="hibernateProperties">
                 <props>
-                    <prop key="hibernate.dialect" >org.hibernate.dialect.MySQLDialect</prop>
+                    <!--
+报错：create table department (
+       did integer not null auto_increment,
+        dname varchar(20),
+        ddesc varchar(100),
+        primary key (did)
+    ) type=MyISAM
+2017-09-19 22:54:59 [??????] com.mchange.v2.c3p0.impl.NewPooledConnection@75e69bf4 handling a throwable.
+com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: You have an error in your SQL syntax;
+check the manual that corresponds to your MySQL server version for the right syntax to use near
+'type=MyISAM' at line 6
+
+解决： type已经是Mysql5.1版本以下用的了，现在更新换代了，使用Hibernate5之后Mysql的方言改为了org.hibernate.dialect.MySQL5Dialect
+修改之后：create table department (
+            did integer not null auto_increment,
+            dname varchar(20),
+            ddesc varchar(100),
+            primary key (did)
+        ) engine=MyISAM
+
+                    -->
+                    <prop key="hibernate.dialect" >org.hibernate.dialect.MySQL5Dialect</prop>
                     <prop key="hibernate.show_sql">true</prop><!--是否显示所生成 SQL 语句，我们最常和它打交道-->
                     <prop key="hibernate.format_sql">true</prop><!--作用是:输出格式化后的sql,更方便查看 -->
                     <prop key="hibernate.hbm2ddl.auto">update</prop><!-- 有表的时候使用当前表，没表的时候自动创建 -->
@@ -33,34 +54,35 @@
         <!-- 加载Hibernate中的映射文件 -->
         <property name="mappingResources">
             <list>
-                <value>Product.hbm.xml</value>
+                <value>hbm/Department.hbm.xml</value>
+                <value>hbm/Employee.hbm.xml</value>
             </list>
         </property>
     </bean>
 
 
 
-    <!-- 配置Action的类  多例：scope-->
+<!--    &lt;!&ndash; 配置Action的类  多例：scope&ndash;&gt;
     <bean id="productAction" class="cn.zz.ssh.action.ProductAction" scope="prototype">
-        <!-- 手动注入Service -->
+        &lt;!&ndash; 手动注入Service &ndash;&gt;
         <property name="productService" ref="productService" />
     </bean>
 
-    <!-- 配置业务层的类 -->
+    &lt;!&ndash; 配置业务层的类 &ndash;&gt;
     <bean id="productService" class="cn.zz.ssh.service.ProductService">
         <property name="productDao" ref="productDao"/>
     </bean>
 
-    <!-- 配置DAO的类 -->
+    &lt;!&ndash; 配置DAO的类 &ndash;&gt;
     <bean id="productDao" class="cn.zz.ssh.dao.ProductDao">
         <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
 
-    <!-- 配置事务管理器 -->
+    &lt;!&ndash; 配置事务管理器 &ndash;&gt;
     <bean id="transactionManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
         <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
 
-    <!-- 开启注解事务 -->
-    <tx:annotation-driven transaction-manager="transactionManager"/>
+    &lt;!&ndash; 开启注解事务 &ndash;&gt;
+    <tx:annotation-driven transaction-manager="transactionManager"/>-->
 </beans>
