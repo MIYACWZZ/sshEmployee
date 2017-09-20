@@ -1,14 +1,19 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE struts PUBLIC
-        "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
-        "http://struts.apache.org/dtds/struts-2.3.dtd">
-
+        "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+        "http://struts.apache.org/dtds/struts-2.5.dtd">
 
 <struts>
-
     <package name="default" namespace="/" extends="struts-default">
-        <action name="product_*" class="productAction" method="{1}" >
-
+        <action name="employee_*" class="employeeAction" method="{1}" >
+            <result name="input">/index.jsp</result>
+            <result name="success" type="redirect">/frame.jsp</result>
+            <!--出现404找不到映射 请加入allowed-methods标签-->
+            <allowed-methods>login</allowed-methods>
+        </action>
+        <action name="department_*" class="departmentAction" method="{1}">
+            <result name="findAll">/frame/list.jsp</result>
+            <allowed-methods>findAll</allowed-methods>
         </action>
     </package>
 </struts>

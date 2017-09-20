@@ -60,24 +60,32 @@ check the manual that corresponds to your MySQL server version for the right syn
         </property>
     </bean>
 
-
-
-<!--    &lt;!&ndash; 配置Action的类  多例：scope&ndash;&gt;
-    <bean id="productAction" class="cn.zz.ssh.action.ProductAction" scope="prototype">
-        &lt;!&ndash; 手动注入Service &ndash;&gt;
-        <property name="productService" ref="productService" />
+<!--Action-->
+    <bean id="employeeAction" class="com.zz.employee.action.EmployeeAction" scope="prototype">
+        <property name="employeeService" ref="employeeService"/>
     </bean>
 
-    &lt;!&ndash; 配置业务层的类 &ndash;&gt;
-    <bean id="productService" class="cn.zz.ssh.service.ProductService">
-        <property name="productDao" ref="productDao"/>
+    <bean id="departmentAction" class="com.zz.employee.action.DepartmentAction" scope="prototype">
+        <property name="departmentService" ref="departmentService"/>
+    </bean>
+<!--Service-->
+    <bean id="employeeService" class="com.zz.employee.service.impl.EmployeeServiceImpl" >
+        <property name="employeeDao" ref="employeeDao"/>
     </bean>
 
-    &lt;!&ndash; 配置DAO的类 &ndash;&gt;
-    <bean id="productDao" class="cn.zz.ssh.dao.ProductDao">
-        <property name="sessionFactory" ref="sessionFactory"/>
+    <bean id="departmentService" class="com.zz.employee.service.impl.DepartmentServiceImpl" >
+        <property name="departmentDao" ref="departmentDao"/>
+    </bean>
+<!--Dao-->
+    <bean id="employeeDao" class="com.zz.employee.dao.impl.EmployeeDaoImpl">
+        <property name="sessionFactory" ref="sessionFactory" />
     </bean>
 
+    <bean id="departmentDao" class="com.zz.employee.dao.impl.DepartmentDaoImpl">
+        <property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+
+<!--
     &lt;!&ndash; 配置事务管理器 &ndash;&gt;
     <bean id="transactionManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
         <property name="sessionFactory" ref="sessionFactory"/>
