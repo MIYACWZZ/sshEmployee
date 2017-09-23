@@ -5,15 +5,18 @@
 
 <struts>
     <package name="default" namespace="/" extends="struts-default">
+        <global-allowed-methods>regex:.*</global-allowed-methods>
         <action name="employee_*" class="employeeAction" method="{1}" >
             <result name="input">/index.jsp</result>
             <result name="success" type="redirect">/frame.jsp</result>
             <!--出现404找不到映射 请加入allowed-methods标签-->
             <allowed-methods>login</allowed-methods>
         </action>
+
         <action name="department_*" class="departmentAction" method="{1}">
             <result name="findAll">/frame/list.jsp</result>
-            <allowed-methods>findAll</allowed-methods>
+            <result name="saveUI">/frame/addDepartment.jsp</result>
+            <result name="saveSuccess" type="redirectAction">/department_findAll.action</result>
         </action>
     </package>
 </struts>

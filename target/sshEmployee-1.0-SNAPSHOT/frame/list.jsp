@@ -42,7 +42,7 @@
     <s:iterator value="list" var="d">
         <tr>
             <td align="center"><s:property value="#d.dname"/></td>
-            <td align="center"><a href="addDepartment.jsp">添加</a></td>
+            <td align="center"><a href="${pageContext.request.contextPath}/department_saveUI.action">添加</a></td>
         </tr>
     </s:iterator>
 

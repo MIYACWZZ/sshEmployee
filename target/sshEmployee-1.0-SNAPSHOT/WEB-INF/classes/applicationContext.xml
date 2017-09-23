@@ -85,12 +85,11 @@ check the manual that corresponds to your MySQL server version for the right syn
         <property name="sessionFactory" ref="sessionFactory" />
     </bean>
 
-<!--
-    &lt;!&ndash; 配置事务管理器 &ndash;&gt;
+    <!-- 配置事务管理器 -->
     <bean id="transactionManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
         <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
 
-    &lt;!&ndash; 开启注解事务 &ndash;&gt;
-    <tx:annotation-driven transaction-manager="transactionManager"/>-->
+    <!-- 开启注解事务 -->
+    <tx:annotation-driven transaction-manager="transactionManager"/>
 </beans>

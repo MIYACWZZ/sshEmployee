@@ -39,4 +39,15 @@ public class DepartmentAction extends ActionSupport implements ModelDriven<Depar
         ActionContext.getContext().getValueStack().push(pageBean);
         return "findAll";
     }
+
+    //跳转到添加部门页面
+    public String saveUI(){
+        return "saveUI";
+    }
+
+    //保存部门
+    public String save(){
+        departmentService.save(department);
+        return "saveSuccess";
+    }
 }

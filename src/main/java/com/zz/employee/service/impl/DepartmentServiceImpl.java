@@ -4,12 +4,14 @@ import com.zz.employee.dao.DepartmentDao;
 import com.zz.employee.domain.Department;
 import com.zz.employee.domain.PageBean;
 import com.zz.employee.service.DepartmentService;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 /**
  * 部门业务实现类
  */
+@Transactional
 public class DepartmentServiceImpl implements DepartmentService {
     private DepartmentDao departmentDao;
 
@@ -39,5 +41,10 @@ public class DepartmentServiceImpl implements DepartmentService {
         pageBean.setList(list);
 
         return pageBean;
+    }
+
+    //保存新添加部门
+    public void save(Department department) {
+        departmentDao.save(department);
     }
 }

@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="s" uri="/struts-tags" %>
 <html>
 <head></head>
 <body>
@@ -15,17 +16,18 @@
     </tr>
     <tr>
         <td align="right">
-            <a href="#">保存</a> &nbsp;&nbsp;
-            <a href="#">退回 </a>
+            <a href="javascript:document.getElementById('saveForm').submit()">保存</a> &nbsp;&nbsp;
+            <a href="javascript:history.go(-1)">退回 </a>
         </td>
     </tr>
 </table>
 <br/>
 <br>
+<s:form id="saveForm" method="POST" action="department_save" namespace="/" theme="simple">
 <table style="font-size::16px">
     <tr>
         <td>部门名称：</td>
-        <td><input type="text"/></td>
+        <td><input type="text" name="dname"/></td>
     </tr>
     <tr>
         <td>部门介绍：</td>
@@ -34,9 +36,10 @@
     <tr>
         <td width="10%"></td>
         <td>
-            <textarea cols="50" rows="5">ckeditor</textarea>
+            <s:textarea rows="5" cols="50" name="ddesc"/>
         </td>
     </tr>
 </table>
+</s:form>
 </body>
 </html> 

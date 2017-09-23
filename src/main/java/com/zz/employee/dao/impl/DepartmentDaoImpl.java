@@ -48,4 +48,9 @@ public class DepartmentDaoImpl extends HibernateDaoSupport implements Department
         closeSession(session);
         return list;
     }
+
+    //保存部门的方法
+    public void save(Department department) {
+        getHibernateTemplate().save(department);
+    }
 }
