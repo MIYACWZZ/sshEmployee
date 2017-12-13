@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.zz.employee.domain.LeaveLine" table="leaveline">
+        <id name="lid" column="lid">
+            <generator class="native"/>
+        </id>
+        <property name="ldesc" column="ldesc" length="200"/>
+        <property name="lvalue" column="lvalue" length="100"/>
+        <property name="leid" column="leid" length="10"/>
+
+<!--        &lt;!&ndash;关联关系映射&ndash;&gt;
+        <many-to-one name="employee" class="com.zz.employee.domain.Employee" column="leno"  lazy="false">
+
+        </many-to-one>-->
+    </class>
+</hibernate-mapping>

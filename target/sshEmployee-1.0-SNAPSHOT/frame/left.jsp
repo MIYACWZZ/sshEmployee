@@ -18,12 +18,13 @@ To change this template use File | Settings | File Templates.
     <div class="dtree">
         <script type="text/javascript">
             d = new dTree('d');
-
             d.add('01', '-1', '员工管理系统');
             d.add('0101', '01', '人力资源部');
             d.add('010101', '0101', '部门管理', '${pageContext.request.contextPath}/department_findAll.action', '', 'right');
-
-            d.add('010102', '0101', '员工管理', 'listEmployee.jsp', '', 'right');
+            d.add('010102', '0101', '员工管理', '${pageContext.request.contextPath}/employee_findAll.action', '', 'right');
+            d.add('010103', '0101', '查询部门详情', '${pageContext.request.contextPath}/department_searchUI.action', '', 'right');
+            d.add('010104', '0101', '查询员工', '${pageContext.request.contextPath}/frame/searchEmployee.jsp', '', 'right');
+            d.add('010105', '0101', '处理请假条', '${pageContext.request.contextPath}/center_findAllLeave.action', '', 'right');
             document.write(d);
         </script>
     </div>

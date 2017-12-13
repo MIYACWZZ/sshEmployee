@@ -1,25 +1,58 @@
 package com.zz.employee.domain;
 
 import java.util.Date;
+import java.util.Set;
 
 /**
  * 员工的实体
  */
 public class Employee {
-   //员工id
-   private int eid;
-   //姓名
-   private String ename;
-   //性别
-   private String sex;
-   //生日
-   private Date birthday;
-   //入职日期
-   private Date joinday;
-   //员工编号
-   private String eno;
-   //所属部门
-   private Department department;
+    //员工id
+    private int eid;
+    //姓名
+    private String ename;
+    //性别
+    private String sex;
+    //生日
+    private Date birthday;
+    //入职日期
+    private Date joinday;
+    //员工编号
+    private String eno;
+    //所属部门
+    private Department department;
+    //员工电话
+    private long ephone;
+    //员工权限
+    private int evalue;
+/*
+    //请假条集合
+    private Set<LeaveLine> leavees;
+
+    public Set<LeaveLine> getLeavees() {
+        return leavees;
+    }
+
+    public void setLeavees(Set<LeaveLine> leavees) {
+        this.leavees = leavees;
+    }
+*/
+
+    public int getEvalue() {
+        return evalue;
+    }
+
+    public void setEvalue(int evalue) {
+        this.evalue = evalue;
+    }
+
+    public long getEphone() {
+        return ephone;
+    }
+
+    public void setEphone(long ephone) {
+        this.ephone = ephone;
+    }
 
     public int getEid() {
         return eid;
@@ -96,8 +129,8 @@ public class Employee {
     /**
      * 用于登录
      */
-   //用户名
-   private String username;
-   //密码
-   private String password;
+    //用户名
+    private String username;
+    //密码
+    private String password;
 }

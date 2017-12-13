@@ -4,8 +4,11 @@ import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
 import com.zz.employee.domain.Department;
+import com.zz.employee.domain.Employee;
 import com.zz.employee.domain.PageBean;
 import com.zz.employee.service.DepartmentService;
+
+import java.util.List;
 
 /**
  * 部门管理Action类
@@ -45,9 +48,39 @@ public class DepartmentAction extends ActionSupport implements ModelDriven<Depar
         return "saveUI";
     }
 
-    //保存部门
+    //添加部门的执行方法
     public String save(){
         departmentService.save(department);
         return "saveSuccess";
     }
+
+    //编辑部门的执行方法：
+    public String edit(){
+        //使当前模型对象是通过id传递的
+        department = departmentService.findById(department.getDid());
+
+        return "editSuccess";
+    }
+
+    //修改部门的执行方法：
+    public String update(){
+        departmentService.update(department);
+        return "updateSuccess";
+    }
+
+    //删除部门的执行方法：
+    public String delete(){
+        department = departmentService.findById(department.getDid());
+        departmentService.delete(department);
+        return "deleteSuccess";
+    }
+
+    //显示searchUI
+    public String searchUI(){
+        List<Department> list = departmentService.findAll();
+        ActionContext.getContext().getValueStack().set("list", list);
+        return "searchUI";
+    }
+
+
 }

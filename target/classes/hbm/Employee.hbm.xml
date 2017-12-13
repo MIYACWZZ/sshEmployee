@@ -2,7 +2,7 @@
 <!DOCTYPE hibernate-mapping PUBLIC
         "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
-    <class name="com.zz.employee.domain.Employee" table="employee">
+    <class name="com.zz.employee.domain.Employee" table="employee" >
         <id name="eid" column="eid">
             <generator class="native"/>
         </id>
@@ -13,10 +13,19 @@
         <property name="eno" column="eno" length="20"/>
         <property name="username" column="username" length="20"/>
         <property name="password" column="password" length="20"/>
+        <property name="ephone" column="ephone" length="20"/>
+        <property name="evalue" column="evalue" length="10"/>
 
         <!--关联关系映射-->
-        <many-to-one name="department" class="com.zz.employee.domain.Department" column="dno" >
+        <many-to-one name="department" class="com.zz.employee.domain.Department" column="dno"  lazy="false">
 
         </many-to-one>
+<!--        &lt;!&ndash; 关联关系映射 &ndash;&gt;
+        <set name="leavees" inverse="true" cascade="all">
+            <key>
+                <column name="leno" />
+            </key>
+            <one-to-many class="com.zz.employee.domain.LeaveLineLine" />
+        </set>-->
     </class>
 </hibernate-mapping>

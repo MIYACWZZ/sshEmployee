@@ -54,8 +54,10 @@ check the manual that corresponds to your MySQL server version for the right syn
         <!-- 加载Hibernate中的映射文件 -->
         <property name="mappingResources">
             <list>
+                <value>hbm/LeaveLine.hbm.xml</value>
                 <value>hbm/Department.hbm.xml</value>
                 <value>hbm/Employee.hbm.xml</value>
+
             </list>
         </property>
     </bean>
@@ -63,12 +65,19 @@ check the manual that corresponds to your MySQL server version for the right syn
 <!--Action-->
     <bean id="employeeAction" class="com.zz.employee.action.EmployeeAction" scope="prototype">
         <property name="employeeService" ref="employeeService"/>
+        <property name="departmentService" ref="departmentService"/>
     </bean>
 
     <bean id="departmentAction" class="com.zz.employee.action.DepartmentAction" scope="prototype">
         <property name="departmentService" ref="departmentService"/>
     </bean>
-<!--Service-->
+
+    <bean id="centerAction" class="com.zz.employee.action.CenterAction" scope="prototype">
+        <property name="employeeService" ref="employeeService"/>
+        <property name="leaveService" ref="leaveService"/>
+    </bean>
+
+    <!--Service-->
     <bean id="employeeService" class="com.zz.employee.service.impl.EmployeeServiceImpl" >
         <property name="employeeDao" ref="employeeDao"/>
     </bean>
@@ -76,12 +85,21 @@ check the manual that corresponds to your MySQL server version for the right syn
     <bean id="departmentService" class="com.zz.employee.service.impl.DepartmentServiceImpl" >
         <property name="departmentDao" ref="departmentDao"/>
     </bean>
+
+    <bean id="leaveService" class="com.zz.employee.service.impl.LeaveServiceImpl" >
+        <property name="leaveDao" ref="leaveDao"/>
+    </bean>
 <!--Dao-->
     <bean id="employeeDao" class="com.zz.employee.dao.impl.EmployeeDaoImpl">
         <property name="sessionFactory" ref="sessionFactory" />
+        <property name="departmentService" ref="departmentService"/>
     </bean>
 
     <bean id="departmentDao" class="com.zz.employee.dao.impl.DepartmentDaoImpl">
+        <property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+
+    <bean id="leaveDao" class="com.zz.employee.dao.impl.LeaveDaoImpl">
         <property name="sessionFactory" ref="sessionFactory" />
     </bean>
 
@@ -90,6 +108,10 @@ check the manual that corresponds to your MySQL server version for the right syn
         <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
 
+    <bean id="openSessionInViewInterceptor"
+          class="org.springframework.orm.hibernate5.support.OpenSessionInViewInterceptor">
+        <property name="sessionFactory" ref="sessionFactory" />
+    </bean>
     <!-- 开启注解事务 -->
     <tx:annotation-driven transaction-manager="transactionManager"/>
 </beans>

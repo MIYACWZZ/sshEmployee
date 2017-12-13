@@ -11,9 +11,11 @@
         <property name="ddesc" column="ddesc" length="100"/>
 
         <!-- 关联关系映射 -->
-        <set name="employees">
-            <key column="dno"></key>
-            <one-to-many class="com.zz.employee.domain.Employee"/>
+        <set name="employees" inverse="true" cascade="all">
+            <key>
+                <column name="dno" />
+            </key>
+            <one-to-many class="com.zz.employee.domain.Employee" />
         </set>
     </class>
 </hibernate-mapping>

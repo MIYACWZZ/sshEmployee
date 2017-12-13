@@ -5,18 +5,41 @@
 
 <struts>
     <package name="default" namespace="/" extends="struts-default">
+        <!--出现404找不到映射 请加入此标签-->
         <global-allowed-methods>regex:.*</global-allowed-methods>
+
         <action name="employee_*" class="employeeAction" method="{1}" >
             <result name="input">/index.jsp</result>
+            <result name="findAll">/frame/listEmployee.jsp</result>
+            <result name="saveUI">/frame/addEmployee.jsp</result>
             <result name="success" type="redirect">/frame.jsp</result>
+            <result name="userSuccess" type="redirect">/frame2.jsp</result>
+            <result name="saveSuccess" type="redirectAction">/employee_findAll.action</result>
+            <result name="editSuccess">/frame/editEmployee.jsp</result>
+            <result name="updateSuccess"  type="redirectAction">employee_findAll.action</result>
+            <result name="deleteSuccess" type="redirectAction">employee_findAll.action</result>
+            <result name="findSuccess">/frame/findEmployeAns.jsp</result>
+            <result name="findFail">/frame/searchEmployee.jsp</result>
             <!--出现404找不到映射 请加入allowed-methods标签-->
-            <allowed-methods>login</allowed-methods>
+        </action>
+
+        <action name="center_*" class="centerAction" method="{1}">
+            <result name="findAllTel">/frame2/list.jsp</result>
+            <result name="showLeaveSuccess">/frame2/showLeave.jsp</result>
+            <result name="saveUI">/frame2/addLeave.jsp</result>
+            <result name="findAll">/frame/listLeave.jsp</result>
+            <result name="edit">/frame/editLeave.jsp</result>
+            <result name="updateSuccess" type="redirectAction">center_findAllLeave.action</result>
         </action>
 
         <action name="department_*" class="departmentAction" method="{1}">
             <result name="findAll">/frame/list.jsp</result>
             <result name="saveUI">/frame/addDepartment.jsp</result>
+            <result name="searchUI">/frame/searchDepartment.jsp</result>
             <result name="saveSuccess" type="redirectAction">/department_findAll.action</result>
+            <result name="editSuccess">/frame/editDepartment.jsp</result>
+            <result name="updateSuccess" type="redirectAction">/department_findAll.action</result>
+            <result name="deleteSuccess" type="redirectAction">/department_findAll.action</result>
         </action>
     </package>
 </struts>

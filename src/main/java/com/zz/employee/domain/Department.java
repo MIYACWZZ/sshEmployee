@@ -15,7 +15,7 @@ public class Department {
     //部门描述
     private String ddesc;
     //员工集合
-    private Set<Employee> employees = new HashSet<Employee>();
+    private Set<Employee> employees;
 
     public Set<Employee> getEmployees() {
         return employees;

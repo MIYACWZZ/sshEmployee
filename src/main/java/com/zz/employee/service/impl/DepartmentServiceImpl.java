@@ -11,6 +11,9 @@ import java.util.List;
 /**
  * 部门业务实现类
  */
+/**
+ * 开启事务
+ */
 @Transactional
 public class DepartmentServiceImpl implements DepartmentService {
     private DepartmentDao departmentDao;
@@ -36,15 +39,40 @@ public class DepartmentServiceImpl implements DepartmentService {
         //封装每页显示的数据
         int begin = (currPage - 1) * pageSize;
         List<Department> list = departmentDao.findByPage(begin, pageSize);
-        if (list.size()<=1)
+        if (list.size() <= 1)
             System.out.println("查不出数据！！！！！！！！！！！");
         pageBean.setList(list);
 
         return pageBean;
     }
 
-    //保存新添加部门
+    //业务层保存新添加部门
     public void save(Department department) {
         departmentDao.save(department);
+    }
+
+    //业务层根据部门ID查询相应部门的方法
+    public Department findById(int did) {
+
+        return departmentDao.findById(did);
+    }
+
+    //业务层修改部门
+    public void update(Department department) {
+        departmentDao.update(department);
+
+    }
+
+    //业务层删除部门
+    public void delete(Department department) {
+        departmentDao.delete(department);
+    }
+
+    /**
+     * 业务层查找所有的部门
+     * @return
+     */
+    public List<Department> findAll() {
+        return departmentDao.findAll();
     }
 }

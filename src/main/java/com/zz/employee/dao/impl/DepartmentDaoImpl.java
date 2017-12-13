@@ -40,17 +40,44 @@ public class DepartmentDaoImpl extends HibernateDaoSupport implements Department
         session = getSessionFactory().openSession();
         Query query = session.createQuery(hql);
         //按参数位置绑定查询条件
-        System.out.println(begin);
-        System.out.println(pageSize);
         query.setFirstResult(begin);
         query.setMaxResults(pageSize);
         List<Department> list = query.list();
-        closeSession(session);
+        session.close();
         return list;
     }
 
-    //保存部门的方法
+    //DAO中保存部门的方法
     public void save(Department department) {
         getHibernateTemplate().save(department);
+    }
+
+    //DAO中根据部门id查询部门的方法
+    public Department findById(int did) {
+        return this.getHibernateTemplate().get(Department.class,did);
+    }
+
+    //DAO中修改部门的方法
+    public void update(Department department) {
+        this.getHibernateTemplate().update(department);
+    }
+
+    //DAO中删除部门的方法
+    public void delete(Department department) {
+        this.getHibernateTemplate().delete(department);
+    }
+
+    /**
+     * DAO层查找所有的部门
+     *
+     * @return
+     */
+    public List<Department> findAll() {
+        String hql = "from Department";
+        session = getSessionFactory().openSession();
+        Query query = session.createQuery(hql);
+        List<Department> list = query.list();
+        session.close();
+        return list;
     }
 }
